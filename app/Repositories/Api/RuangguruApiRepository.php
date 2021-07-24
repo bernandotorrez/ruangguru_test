@@ -4,8 +4,8 @@ namespace App\Repositories\Api;
 
 use Illuminate\Support\Facades\Http;
 
-class RuangguruApiRepository {
-
+class RuangguruApiRepository
+{
     protected string $apiUrl;
 
     public function __construct()

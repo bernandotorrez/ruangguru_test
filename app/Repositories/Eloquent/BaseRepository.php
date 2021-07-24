@@ -2,8 +2,10 @@
 
 namespace App\Repositories\Eloquent;
 
-class BaseRepository implements BaseInterface {
+use Illuminate\Support\Facades\DB;
 
+class BaseRepository implements BaseInterface
+{
     protected $model;
     protected $primaryKey;
 
@@ -135,11 +137,10 @@ class BaseRepository implements BaseInterface {
     }
 
     /**
-     * Get Visible Column of the Model
-     * App\Model, protected $visible = [];
+     * Get by View
      */
-    public function getColumn()
+    public function view(string $view)
     {
-        return $this->column;
+        return DB::table($view)->select('*')->where('is_deleted', '0')->get();
     }
 }

@@ -2,7 +2,8 @@
 
 namespace App\Repositories\Eloquent;
 
-interface BaseInterface {
+interface BaseInterface
+{
     public function create(array $data);
 
     public function findDuplicate(array $data);

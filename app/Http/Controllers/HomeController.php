@@ -4,18 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SubmitSubmissionRequest;
 use App\Repositories\Api\RuangguruApiRepository;
+use App\Repositories\Eloquent\EligiblePrizeMappingsRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
-    protected array $eligibleMapping;
-
-    public function __construct()
-    {
-        $this->eligibleMapping = ['englishacademy', 'skillacademy', 'ruangguru'];
-    }
+    protected $eligibleMapping = ['englishacademy', 'skillacademy', 'ruangguru'];
 
     public function index()
     {
@@ -24,10 +20,13 @@ class HomeController extends Controller
 
     public function checkIfEligible(
         SubmitSubmissionRequest $request,
-        RuangguruApiRepository $ruangguruApiRepository
+        RuangguruApiRepository $ruangguruApiRepository,
+        EligiblePrizeMappingsRepository $eligiblePrizeMappingsRepository
     ) {
         $validated = $request->validated();
         $userId = $validated['userId'];
+        $test = $eligiblePrizeMappingsRepository->view('view_eligible_prize_mappings');
+        dd($test);
 
         $response = Cache::remember('userID-'.$userId, 60, function () use ($userId, $ruangguruApiRepository) {
             $data = $ruangguruApiRepository->getByUserId($userId);
