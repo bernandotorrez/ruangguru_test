@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
-    protected $eligibleMapping = ['englishacademy', 'skillacademy', 'ruangguru'];
-
     public function index()
     {
         return view('pages.home.index');
@@ -25,10 +23,8 @@ class HomeController extends Controller
     ) {
         $validated = $request->validated();
         $userId = $validated['userId'];
-        $test = $eligiblePrizeMappingsRepository->view('view_eligible_prize_mappings');
-        dd($test);
 
-        $response = Cache::remember('userID-'.$userId, 60, function () use ($userId, $ruangguruApiRepository) {
+        $response = Cache::remember('userID-'.$userId, 60, function () use ($userId, $ruangguruApiRepository, $eligiblePrizeMappingsRepository) {
             $data = $ruangguruApiRepository->getByUserId($userId);
             $status = $data['status'];
 
@@ -43,18 +39,21 @@ class HomeController extends Controller
             $packages = $data['packages'];
 
             $isEligible = 0;
+            $eligibleList = [];
 
             foreach($packages as $package) {
-                if(in_array($package['packageTag'], $this->eligibleMapping)) {
-                    if($package['orderStatus'] == 'SUCCEED') {
-                        $isEligible = 1;
-                    }
+                if($package['orderStatus'] == 'SUCCEED') {
+                    $isEligible = 1;
+                    array_push($eligibleList, $package['packageTag']);
                 }
             }
 
+            $eligiblePrizes = $eligiblePrizeMappingsRepository->view('view_eligible_prize_mappings', ['product_subscription_name', 'product_tag', 'prize_name'], ['product_tag' => $eligibleList]);
+
             return response()->json([
                 'user' => $user,
-                'isEligible' => $isEligible
+                'isEligible' => $isEligible,
+                'eligiblePrizes' => $eligiblePrizes
             ], 200);
         });
 

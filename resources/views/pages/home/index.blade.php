@@ -90,15 +90,21 @@
                 })
             },
             success: function(response) {
-                var {user, isEligible} = response
+                var {user, isEligible, eligiblePrizes} = response
+
                 if(isEligible == 1) {
+                    var eligiblePrize = []
+                    eligiblePrizes.forEach(prize => {
+                        eligiblePrize.push(prize.prize_name)
+                    });
+
                     var message = `<div
                         class="alert d-flex bgc-green-l4 brc-green-m4 border-1 border-l-0 pl-3 radius-l-0" role="alert">
                         <div class="position-tl h-102 border-l-4 brc-green mt-n1px"></div>
                         <i class="fa fa-check mr-3 text-180 text-green"></i>
 
                         <span class="align-self-center text-green-d2 text-120">
-                            Hooray, you're Eligible to get the Prizes, Please click Submit Button to Process!
+                            Hooray, you're Eligible and you will get : <strong>${eligiblePrize.toString()}</strong>
                         </span>
                     </div>`
                 } else {

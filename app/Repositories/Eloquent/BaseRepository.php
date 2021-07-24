@@ -139,8 +139,15 @@ class BaseRepository implements BaseInterface
     /**
      * Get by View
      */
-    public function view(string $view)
+    public function view(string $view, array $select = ['*'], array $where = [])
     {
-        return DB::table($view)->select('*')->where('is_deleted', '0')->get();
+        $data = DB::table($view);
+        $data = $data->select($select);
+
+        if($where != []) {
+            $data = $data->where($where);
+        }
+
+        return $data->get();
     }
 }
