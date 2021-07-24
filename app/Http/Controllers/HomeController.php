@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckIfEligibleRequest;
 use App\Http\Requests\SubmitSubmissionRequest;
 use App\Repositories\Api\RuangguruApiRepository;
 use App\Repositories\Eloquent\EligiblePrizeMappingsRepository;
@@ -17,7 +18,7 @@ class HomeController extends Controller
     }
 
     public function checkIfEligible(
-        SubmitSubmissionRequest $request,
+        CheckIfEligibleRequest $request,
         RuangguruApiRepository $ruangguruApiRepository,
         EligiblePrizeMappingsRepository $eligiblePrizeMappingsRepository
     ) {
@@ -58,5 +59,10 @@ class HomeController extends Controller
         });
 
         return $response;
+    }
+
+    public function submitSubmission(Request $request)
+    {
+        dd($request->post());
     }
 }

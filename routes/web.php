@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/checkIfEligible', [HomeController::class, 'checkIfEligible'])->name('home.check-eligible');
+Route::post('/submitSubmission', [HomeController::class, 'submitSubmission'])->name('home.submit-submission');

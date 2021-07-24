@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
-    <base href="../" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Dashboard - Ace Admin</title>
 
@@ -74,6 +74,9 @@
     <!-- demo.js is only for Ace's demo and you shouldn't use it -->
     <script src="{{ asset('assets/js/demo.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.ba-throttle-debounce.min.js') }}"></script>
+    <!-- include vendor scripts used in "Alerts" page. see "/views//pages/partials/alerts/@vendor-scripts.hbs" -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
 
     @stack('js')
 </body>

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SubmitSubmissionRequest extends FormRequest
+class CheckIfEligibleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class SubmitSubmissionRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required',
-            'delivery_address' => 'required',
-            'contact_number' => 'required',
-            'contact_person' => 'required',
+            'userId' => 'required'
         ];
     }
 }
