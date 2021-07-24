@@ -10,6 +10,7 @@ class PrizeLists extends Model
     use HasFactory;
 
     protected $table = 'prize_lists';
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.

@@ -10,6 +10,7 @@ class Submissions extends Model
     use HasFactory;
 
     protected $table = 'submissions';
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.

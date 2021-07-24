@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SubmitSubmissionRequest;
+use App\Repositories\Api\RuangguruApiRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
-    protected string $apiUrl;
     protected array $eligibleMapping;
 
     public function __construct()
     {
-        $this->apiUrl = 'https://us-central1-silicon-airlock-153323.cloudfunctions.net/rg-package-dummy';
         $this->eligibleMapping = ['englishacademy', 'skillacademy', 'ruangguru'];
     }
 
@@ -23,13 +22,15 @@ class HomeController extends Controller
         return view('pages.home.index');
     }
 
-    public function checkIfEligible(SubmitSubmissionRequest $request)
-    {
+    public function checkIfEligible(
+        SubmitSubmissionRequest $request,
+        RuangguruApiRepository $ruangguruApiRepository
+    ) {
         $validated = $request->validated();
         $userId = $validated['userId'];
 
-        $response = Cache::remember('userID-'.$userId, 60, function () use ($userId) {
-            $data = Http::get($this->apiUrl, ['userId' => $userId]);
+        $response = Cache::remember('userID-'.$userId, 60, function () use ($userId, $ruangguruApiRepository) {
+            $data = $ruangguruApiRepository->getByUserId($userId);
             $status = $data['status'];
 
             if($status == 'error') {

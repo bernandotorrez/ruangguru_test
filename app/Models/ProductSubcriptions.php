@@ -10,6 +10,7 @@ class ProductSubcriptions extends Model
     use HasFactory;
 
     protected $table = 'product_subscriptions';
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.

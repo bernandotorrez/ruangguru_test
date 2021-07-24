@@ -10,6 +10,7 @@ class EligiblePrizeMappings extends Model
     use HasFactory;
 
     protected $table = 'eligible_prize_mappings';
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
