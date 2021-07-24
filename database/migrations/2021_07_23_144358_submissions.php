@@ -21,12 +21,13 @@ class Submissions extends Migration
                 $table->string('contact_number', 15);
                 $table->string('contact_person', 100);
                 $table->enum('is_eligible', ['0', '1'])->default('0');
-                $table->enum('status', ['Crt', 'Dlv', 'Rjt'])->default('Crt')->comment('Rjt = Rejected, Crt = Created, Dlv = Delivery');
+                $table->enum('status_submission', ['Crt', 'Dlv', 'Rjt'])->default('Crt')->comment('Rjt = Rejected, Crt = Created, Dlv = Delivery');
                 $table->timestamps();
                 $table->dateTime('date_rejected');
                 $table->unsignedBigInteger('rejected_by')->comment('user_id')->nullable();
                 $table->dateTime('date_delivery');
                 $table->unsignedBigInteger('delivery_by')->comment('user_id')->nullable();
+                $table->enum('is_deleted', ['0', '1'])->default('0');
             });
         }
 

@@ -22,10 +22,11 @@ class Submissions extends Model
         'contact_number',
         'contact_person',
         'is_eligible',
-        'status',
+        'status_submission',
         'date_rejected',
         'rejected_by',
         'date_delivery',
         'delivery_by',
+        'is_deleted',
     ];
 }

@@ -46,13 +46,15 @@ class HomeController extends Controller
 
             foreach($packages as $package) {
                 if(in_array($package['packageTag'], $this->eligibleMapping)) {
-                    $isEligible = 1;
+                    if($package['orderStatus'] == 'SUCCEED') {
+                        $isEligible = 1;
+                    }
                 }
             }
 
             return response()->json([
                 'user' => $user,
-                'isEligible' => 0
+                'isEligible' => $isEligible
             ], 200);
         });
 
