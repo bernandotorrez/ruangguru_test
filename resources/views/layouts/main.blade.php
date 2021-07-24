@@ -20,24 +20,19 @@
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/brands.min.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/solid.min.css">
-
-
-
     <!-- include vendor stylesheets used in "Dashboard" page. see "/views//pages/partials/dashboard/@vendor-stylesheets.hbs" -->
-
 
     <!-- include fonts -->
     <link rel="stylesheet" type="text/css"
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap">
 
-
-
     <!-- ace.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/ace.min.css') }}">
 
-
     <!-- favicon -->
     <link rel="icon" type="image/png" href="./assets/favicon.png" />
+
+    @stack('css')
 
 </head>
 
@@ -53,18 +48,7 @@
             <div role="main" class="main-content">
 
                 {{-- Dynamic Content --}}
-                <div class="page-content container container-plus">
-                    <!-- page header and toolbox -->
-                    <div class="page-header pb-2">
-                        <h1 class="page-title text-primary-d2 text-150">
-                            Dashboard
-                            <small class="page-info text-secondary-d2 text-nowrap">
-                                <i class="fa fa-angle-double-right text-80"></i>
-                                overview &amp; stats
-                            </small>
-                        </h1>
-                    </div>
-                </div>
+                @yield('content')
                 {{-- Dynamic Content --}}
 
                 @include('layouts.footer')
@@ -89,6 +73,8 @@
 
     <!-- demo.js is only for Ace's demo and you shouldn't use it -->
     <script src="{{ asset('assets/js/demo.min.js') }}"></script>
+
+    @stack('js')
 </body>
 
 </html>

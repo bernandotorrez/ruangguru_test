@@ -10,9 +10,9 @@
             </button><!-- mobile sidebar toggler button -->
 
             <a class="navbar-brand text-white" href="#">
-                <i class="fa fa-leaf"></i>
-                <span>Ace</span>
-                <span>App</span>
+                <span style="visibility: hidden;">Ruang</span>
+                <img class="img-thumbnail" src="https://www.ruangguru.com/hubfs/OPTIMIZE/logo%20rg.svg">
+
             </a><!-- /.navbar-brand -->
 
             <button type="button" class="btn btn-burger mr-2 d-none d-xl-flex" data-toggle="sidebar"
@@ -22,53 +22,29 @@
 
         </div><!-- /.navbar-intro -->
 
-
-        <div class="navbar-content">
-            <button class="navbar-toggler py-2" type="button" data-toggle="collapse" data-target="#navbarSearch"
-                aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle navbar search">
-                <i class="fa fa-search text-white text-90 py-1"></i>
-            </button><!-- mobile #navbarSearch toggler -->
-
-            <div class="collapse navbar-collapse navbar-backdrop" id="navbarSearch">
-                <form class="d-flex align-items-center ml-lg-4 py-1" data-submit="dismiss">
-                    <i class="fa fa-search text-white d-none d-lg-block pos-rel"></i>
-                    <input type="text"
-                        class="navbar-input mx-3 flex-grow-1 mx-md-auto pr-1 pl-lg-4 ml-lg-n3 py-2 autofocus"
-                        placeholder="SEARCH ..." aria-label="Search" />
-                </form>
-            </div>
-        </div><!-- .navbar-content -->
-
-
+        @if (Auth::check())
         <!-- mobile #navbarMenu toggler button -->
         <button class="navbar-toggler ml-1 mr-2 px-1" type="button" data-toggle="collapse" data-target="#navbarMenu"
             aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navbar menu">
             <span class="pos-rel">
-                <img class="border-2 brc-white-tp1 radius-round" width="36" src="assets/image/avatar/avatar6.jpg"
-                    alt="Jason's Photo">
+                <img class="border-2 brc-white-tp1 radius-round" width="36" src="{{ asset('assets/img/avatar.png') }}"
+                    alt="Avatar">
                 <span class="bgc-warning radius-round border-2 brc-white p-1 position-tr mr-n1px mt-n1px"></span>
             </span>
         </button>
-
+        @endif
 
         <div class="navbar-menu collapse navbar-collapse navbar-backdrop" id="navbarMenu">
 
             <div class="navbar-nav">
                 <ul class="nav">
-
-
-
-
-
-
-
-
+                    @if (Auth::check())
                     <li class="nav-item dropdown order-first order-lg-last">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                             aria-haspopup="true" aria-expanded="false">
                             <img id="id-navbar-user-image"
                                 class="d-none d-lg-inline-block radius-round border-2 brc-white-tp1 mr-2 w-6"
-                                src="assets/image/avatar/avatar6.jpg" alt="Jason's Photo">
+                                src="{{ asset('assets/img/avatar.png') }}" alt="Avatar">
                             <span class="d-inline-block d-lg-none d-xl-inline-block">
                                 <span class="text-90" id="id-user-welcome">Welcome,</span>
                                 <span class="nav-user-name">Jason</span>
@@ -118,6 +94,7 @@
                             </a>
                         </div>
                     </li><!-- /.nav-item:last -->
+                    @endif
 
                 </ul><!-- /.navbar-nav menu -->
             </div><!-- /.navbar-nav -->

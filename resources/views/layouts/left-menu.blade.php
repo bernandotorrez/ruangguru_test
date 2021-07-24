@@ -19,8 +19,6 @@
                         <span class="nav-text fadeable">
                             <span>Dashboard</span>
                         </span>
-
-
                     </a>
 
                     <b class="sub-arrow"></b>
