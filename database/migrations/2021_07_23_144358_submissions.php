@@ -20,6 +20,7 @@ class Submissions extends Migration
                 $table->text('delivery_address');
                 $table->string('contact_number', 15);
                 $table->string('contact_person', 100);
+                $table->enum('is_eligible', ['0', '1'])->default('0');
                 $table->enum('status', ['Crt', 'Dlv', 'Rjt'])->default('Crt')->comment('Rjt = Rejected, Crt = Created, Dlv = Delivery');
                 $table->timestamps();
                 $table->dateTime('date_rejected');

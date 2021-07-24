@@ -22,6 +22,16 @@
 
         </div><!-- /.navbar-intro -->
 
+        <div class="navbar-content">
+
+            <div class="collapse navbar-collapse navbar-backdrop" id="navbarSearch">
+                <a class="navbar-brand text-white text-center" href="#">
+                    <span>Ruangguru Marketing Campaign</span>
+
+                </a><!-- /.navbar-brand -->
+            </div>
+          </div>
+
         @if (Auth::check())
         <!-- mobile #navbarMenu toggler button -->
         <button class="navbar-toggler ml-1 mr-2 px-1" type="button" data-toggle="collapse" data-target="#navbarMenu"

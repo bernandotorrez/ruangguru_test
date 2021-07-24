@@ -73,6 +73,7 @@
 
     <!-- demo.js is only for Ace's demo and you shouldn't use it -->
     <script src="{{ asset('assets/js/demo.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.ba-throttle-debounce.min.js') }}"></script>
 
     @stack('js')
 </body>

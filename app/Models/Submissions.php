@@ -21,6 +21,7 @@ class Submissions extends Model
         'delivery_address',
         'contact_number',
         'contact_person',
+        'is_eligible',
         'status',
         'date_rejected',
         'rejected_by',

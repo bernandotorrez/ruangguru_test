@@ -2,12 +2,17 @@
     <div class="footer-inner bgc-white-tp1">
         <div class="pt-3 border-none border-t-3 brc-grey-l2 border-double">
             <span class="text-primary-m1 font-bolder text-120">Ace</span>
-            <span class="text-grey">Application &copy; 2021</span>
+            <span class="text-grey">Admin &copy; {{ date('Y') }}</span>
+
+            <br>
+
+            <span class="text-primary-m1 font-bolder text-120">Bernand D H</span>
+            <span class="text-grey">&copy; {{ date('Y') }}</span>
 
             <span class="mx-3 action-buttons">
-                <a href="#" class="text-blue-m2 text-150"><i class="fab fa-twitter-square"></i></a>
-                <a href="#" class="text-blue-d2 text-150"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="text-orange-d1 text-150"><i class="fa fa-rss-square"></i></a>
+                <a href="https://www.linkedin.com/in/bernand-d-h/" target="_blank"
+                class="text-blue-m2 text-150">
+                    <i class="fab fa-linkedin"></i></a>
             </span>
         </div>
     </div><!-- .footer-inner -->
@@ -20,4 +25,3 @@
     </div>
 </footer>
 
-    

@@ -5,19 +5,17 @@
 
             <ul class="nav has-active-border active-on-right">
 
-
                 <li class="nav-item-caption">
                     <span class="fadeable pl-3">MAIN</span>
                     <span class="fadeinable mt-n2 text-125">&hellip;</span>
                 </li>
 
-
                 <li class="nav-item active">
 
                     <a href="html/dashboard.html" class="nav-link">
-                        <i class="nav-icon fa fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-edit"></i>
                         <span class="nav-text fadeable">
-                            <span>Dashboard</span>
+                            <span>Submit Submission</span>
                         </span>
                     </a>
 
@@ -25,8 +23,20 @@
 
                 </li>
 
-
                 <li class="nav-item">
+
+                    <a href="html/dashboard.html" class="nav-link">
+                        <i class="nav-icon fas fa-search"></i>
+                        <span class="nav-text fadeable">
+                            <span>Check Submission</span>
+                        </span>
+                    </a>
+
+                    <b class="sub-arrow"></b>
+
+                </li>
+
+                {{-- <li class="nav-item">
 
                     <a href="#" class="nav-link dropdown-toggle collapsed">
                         <i class="nav-icon fa fa-cube"></i>
@@ -52,24 +62,34 @@
 
                     <b class="sub-arrow"></b>
 
-                </li>
+                </li> --}}
+
+                @if (Auth::check())
+                    @if (Auth::user()['is_admin'] == '1')
+                    <li class="nav-item-caption">
+                        <span class="fadeable pl-3">ADMIN</span>
+                        <span class="fadeinable mt-n2 text-125">&hellip;</span>
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a href="html/dashboard.html" class="nav-link">
+                            <i class="nav-icon fas fa-clipboard-list"></i>
+                            <span class="nav-text fadeable">
+                                <span>Submission List</span>
+                            </span>
+                        </a>
+
+                        <b class="sub-arrow"></b>
+
+                    </li>
+                    @endif
+                @endif
+
+
             </ul>
 
         </div><!-- /.sidebar scroll -->
-
-
-        <div class="sidebar-section">
-            <div class="sidebar-section-item fadeable-bottom">
-                <div class="fadeinable">
-                    <!-- shows this when collapsed -->
-                    <div class="pos-rel">
-                        <img alt="Alexa's Photo" src="assets/image/avatar/avatar3.jpg" width="42"
-                            class="px-1px radius-round mx-2 border-2 brc-default-m2" />
-                        <span class="bgc-success radius-round border-2 brc-white p-1 position-tr mr-1 mt-2px"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 </div>
