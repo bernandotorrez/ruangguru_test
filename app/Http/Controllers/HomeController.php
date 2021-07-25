@@ -111,6 +111,45 @@ class HomeController extends Controller
                 ], 200);
             }
         }
+    }
+
+    public function checkSubmission()
+    {
+        return view('pages.home.check-submission');
+    }
+
+    public function checkMySubmission(CheckIfEligibleRequest $request)
+    {
+        $validated = $request->validated();
+        $submissionsRepository = $this->submissionsRepository;
+
+        $data = Cache::remember('checkMySubmission-userId-'.$validated['userId'], 60, function () use ($submissionsRepository, $validated) {
+            return $submissionsRepository->getByUserId($validated['userId']);
+        });
+
+        if($data->status_submission == 'Crt') {
+            $progress = 'Created';
+        } else if($data->status_submission == 'Dlv') {
+            $progress = 'Delivery';
+        } else if($data->status_submission == 'Rjt') {
+            $progress = 'Rejected';
+        }
+
+        if($data) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Success',
+                'data' => $data->user_id,
+                'progress' => $progress
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Not Found',
+                'data' => null,
+                'progress' => null
+            ], 200);
+        }
 
 
     }

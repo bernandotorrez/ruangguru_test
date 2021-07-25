@@ -19,10 +19,11 @@ use Illuminate\Support\Facades\Route;
 // Guest
 Route::middleware(['guestSession'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
-    Route::get('/check-submission', [HomeController::class, 'index'])->name('home.check-submission');
+    Route::get('/check-submission', [HomeController::class, 'checkSubmission'])->name('home.check-submission');
+    Route::post('/check-my-submission', [HomeController::class, 'checkMySubmission'])->name('home.check-my-submission');
 });
 
-Route::get('/check-eligible', [HomeController::class, 'checkIfEligible'])->name('home.check-eligible');
+Route::post('/check-eligible', [HomeController::class, 'checkIfEligible'])->name('home.check-eligible');
 Route::post('/submitSubmission', [HomeController::class, 'submitSubmission'])->name('home.submit-submission');
 
 // Login

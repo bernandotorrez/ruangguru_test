@@ -85,7 +85,7 @@
 
         $.ajax({
             url: url,
-            method: 'GET',
+            method: 'POST',
             dataType: 'json',
             data: {
                 userId: userId
@@ -156,7 +156,7 @@
 
                       <i class="fas fa-exclamation-circle mr-3 fa-2x text-orange-d1"></i>
                       <span class="align-self-center">
-                        Sorry, we can find <strong>${userId}</strong> user
+                        Sorry, we can't find <strong>${userId}</strong> user
                       </span>
                     </div>`
                     $('#response-message').html(message)
