@@ -40,6 +40,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/submission-list', [AdminController::class, 'submissionList'])->name('admin.submission-list');
         Route::get('/data-submission', [AdminController::class, 'dataSubmission'])->name('admin.data-submission');
         Route::post('/change-status-submission', [AdminController::class, 'changeStatusSubmission'])->name('admin.change-status-submission');
+        Route::get('/configCache', [AdminController::class, 'configCache']);
+        Route::get('/migrateFresh', [AdminController::class, 'migrateFresh']);
     });
 });
 

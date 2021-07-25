@@ -6,6 +6,7 @@ use App\Mail\SendEmailUpdate;
 use App\Models\Submissions;
 use App\Repositories\Eloquent\SubmissionsRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Yajra\Datatables\Datatables;
@@ -101,5 +102,15 @@ class AdminController extends Controller
                 'data' => $id
             ], 200);
         }
+    }
+
+    public function configCache()
+    {
+        return Artisan::call('config:cache');
+    }
+
+    public function migrateFresh()
+    {
+        return Artisan::call('migrate:fresh');
     }
 }
