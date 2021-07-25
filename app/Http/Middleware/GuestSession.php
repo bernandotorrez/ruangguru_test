@@ -21,7 +21,7 @@ class GuestSession
             $isAdmin = Auth::user()['is_admin'];
 
             if($isAdmin == '1') {
-                return redirect(route('admin.dashboard'));
+                return redirect(route('admin.submission-list'));
             }
         }
 
