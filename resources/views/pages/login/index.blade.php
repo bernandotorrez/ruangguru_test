@@ -184,7 +184,7 @@
                         var { status, message } = response
 
                         if (status == 'success') {
-                            window.location.replace('{{ route('admin.dashboard') }}')
+                            window.location.replace('{{ route('admin.submission-list') }}')
                         } else {
                             var msg = `<div class="alert d-flex bgc-danger-l4 text-dark-tp3 radius-0 text-120 brc-danger-l2 col-md-6 offset-md-3" role="alert">
                             <div class="position-tl h-102 ml-n1px border-l-4 brc-danger-tp2 m-n1px"></div>

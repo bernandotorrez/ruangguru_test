@@ -36,8 +36,9 @@ Route::prefix('login')->group(function () {
 // Admin
 Route::prefix('admin')->group(function () {
     Route::middleware(['adminSession'])->group(function () {
-        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-        Route::get('/logout', [AdminController::class]);
+        Route::get('/submission-list', [AdminController::class, 'submissionList'])->name('admin.submission-list');
+        Route::get('/data-submission', [AdminController::class, 'dataSubmission'])->name('admin.data-submission');
+        Route::post('/change-status-submission', [AdminController::class, 'changeStatusSubmission'])->name('admin.change-status-submission');
     });
 });
 

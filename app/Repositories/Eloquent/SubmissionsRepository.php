@@ -10,4 +10,9 @@ class SubmissionsRepository extends BaseRepository
     {
         parent::__construct($model);
     }
+
+    public function getByUserId($id)
+    {
+        return $this->model->where('user_id', $id)->where('is_deleted', '0')->first();
+    }
 }

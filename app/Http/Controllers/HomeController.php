@@ -4,27 +4,43 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckIfEligibleRequest;
 use App\Http\Requests\SubmitSubmissionRequest;
+use App\Mail\SendEmail;
 use App\Repositories\Api\RuangguruApiRepository;
 use App\Repositories\Eloquent\EligiblePrizeMappingsRepository;
 use App\Repositories\Eloquent\SubmissionsRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-        return view('pages.home.index');
+    protected RuangguruApiRepository $ruangguruApiRepository;
+    protected EligiblePrizeMappingsRepository $eligiblePrizeMappingsRepository;
+    protected SubmissionsRepository $submissionsRepository;
+
+    public function __construct(
+        RuangguruApiRepository $ruangguruApiRepository,
+        EligiblePrizeMappingsRepository $eligiblePrizeMappingsRepository,
+        SubmissionsRepository $submissionsRepository
+    ) {
+        $this->ruangguruApiRepository = $ruangguruApiRepository;
+        $this->eligiblePrizeMappingsRepository = $eligiblePrizeMappingsRepository;
+        $this->submissionsRepository = $submissionsRepository;
     }
 
-    public function checkIfEligible(
-        CheckIfEligibleRequest $request,
-        RuangguruApiRepository $ruangguruApiRepository,
-        EligiblePrizeMappingsRepository $eligiblePrizeMappingsRepository
-    ) {
+    public function index()
+    {
+        return view('pages.home.submit-submission');
+    }
+
+    public function checkIfEligible(CheckIfEligibleRequest $request)
+    {
         $validated = $request->validated();
         $userId = $validated['userId'];
+
+        $ruangguruApiRepository = $this->ruangguruApiRepository;
+        $eligiblePrizeMappingsRepository = $this->eligiblePrizeMappingsRepository;
 
         $response = Cache::remember('userID-'.$userId, 60, function () use ($userId, $ruangguruApiRepository, $eligiblePrizeMappingsRepository) {
             $data = $ruangguruApiRepository->getByUserId($userId);
@@ -62,13 +78,11 @@ class HomeController extends Controller
         return $response;
     }
 
-    public function submitSubmission(
-        SubmitSubmissionRequest $request,
-        SubmissionsRepository $submissionsRepository
-    ) {
+    public function submitSubmission(SubmitSubmissionRequest $request)
+    {
         $validated = $request->validated();
 
-        $checkDuplicate = $submissionsRepository->findDuplicate(['user_id' => $validated['user_id']]);
+        $checkDuplicate = $this->submissionsRepository->findDuplicate(['user_id' => $validated['user_id']]);
 
         if($checkDuplicate >= 1) {
             return response()->json([
@@ -77,9 +91,13 @@ class HomeController extends Controller
                 'data' => $checkDuplicate
             ], 200);
         } else {
-            $insert = $submissionsRepository->create($validated);
+            $insert = $this->submissionsRepository->create($validated);
 
             if($insert) {
+                $data = $this->submissionsRepository->getByUserId($validated['user_id']);
+                //Mail::to($validated['user_email'])->send(new SendEmail($data));
+                Mail::to('bernandotorrez4@gmail.com')->send(new SendEmail($data));
+
                 return response()->json([
                     'status' => 'success',
                     'message' => 'Submission Succesfully',

@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Submission')
+
 @section('content')
 <div class="page-content container container-plus">
     <!-- page header and toolbox -->
@@ -29,10 +31,10 @@
                     <div class="text-danger validation" data-field="contact_person"></div>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" maxlength="100" id="email"
-                    name="email" readonly>
-                    <div class="text-danger validation" data-field="email"></div>
+                    <label for="user_email">Email</label>
+                    <input type="text" class="form-control" maxlength="100" id="user_email"
+                    name="user_email" readonly>
+                    <div class="text-danger validation" data-field="user_email"></div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="contact_number">Phone</label>
@@ -96,7 +98,7 @@
                 $('#submit').prop('disabled', true)
                 $('#user_id').prop('readonly', true)
                 $('#contact_person').val('Searching...')
-                $('#email').val('Searching...')
+                $('#user_email').val('Searching...')
                 $('#contact_number').val('Searching...')
                 $('#is_eligible').val('')
 
@@ -142,7 +144,7 @@
                 $('#response-message').html(message)
                 $('#user_id').prop('readonly', false)
                 $('#contact_person').val(user.userName)
-                $('#email').val(user.userEmail)
+                $('#user_email').val(user.userEmail)
                 $('#contact_number').val(user.userPhoneNumber)
                 $('#is_eligible').val(isEligible)
 
@@ -171,7 +173,7 @@
                 $('#submit').prop('disabled', true)
                 $('#user_id').prop('readonly', false)
                 $('#contact_person').val('')
-                $('#email').val('')
+                $('#user_email').val('')
                 $('#contact_number').val('')
                 $('#is_eligible').val('')
             }

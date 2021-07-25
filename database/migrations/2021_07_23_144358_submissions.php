@@ -17,6 +17,7 @@ class Submissions extends Migration
             Schema::create('submissions', function (Blueprint $table) {
                 $table->id();
                 $table->string('user_id', 50);
+                $table->string('user_email', 100);
                 $table->text('delivery_address');
                 $table->string('contact_number', 15);
                 $table->string('contact_person', 100);

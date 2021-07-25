@@ -73,9 +73,9 @@
                         <span class="fadeinable mt-n2 text-125">&hellip;</span>
                     </li>
 
-                    <li class="nav-item {{ (url()->current() == route('admin.dashboard')) ? 'active' : '' }}">
+                    <li class="nav-item {{ (url()->current() == route('admin.submission-list')) ? 'active' : '' }}">
 
-                        <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                        <a href="{{ route('admin.submission-list') }}" class="nav-link">
                             <i class="nav-icon fas fa-clipboard-list"></i>
                             <span class="nav-text fadeable">
                                 <span>Submission List</span>

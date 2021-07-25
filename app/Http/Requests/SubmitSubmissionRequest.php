@@ -28,7 +28,8 @@ class SubmitSubmissionRequest extends FormRequest
             'delivery_address' => 'required|max:500|min:5',
             'contact_number' => 'required|alpha_num|max:15|min:10',
             'contact_person' => 'required|max:100|min:3',
-            'is_eligible' => 'required|digits_between:0,1'
+            'is_eligible' => 'required|digits_between:0,1',
+            'user_email' => 'required|min:5|max:100'
         ];
     }
 }

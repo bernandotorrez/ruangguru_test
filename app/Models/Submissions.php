@@ -19,6 +19,7 @@ class Submissions extends Model
      */
     protected $fillable = [
         'user_id',
+        'user_email',
         'delivery_address',
         'contact_number',
         'contact_person',
