@@ -11,7 +11,7 @@
                     <span class="fadeinable mt-n2 text-125">&hellip;</span>
                 </li>
 
-                <li class="nav-item {{ (request()->is(route('home.index'))) ? 'active' : '' }}">
+                <li class="nav-item {{ (url()->current() == route('home.index')) ? 'active' : '' }}">
 
                     <a href="{{ route('home.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
@@ -24,7 +24,7 @@
 
                 </li>
 
-                <li class="nav-item {{ (request()->is(route('home.check-submission'))) ? 'active' : '' }}">
+                <li class="nav-item {{ (url()->current() == route('home.check-submission')) ? 'active' : '' }}">
 
                     <a href="{{ route('home.check-submission') }}" class="nav-link">
                         <i class="nav-icon fas fa-search"></i>
@@ -73,7 +73,7 @@
                         <span class="fadeinable mt-n2 text-125">&hellip;</span>
                     </li>
 
-                    <li class="nav-item {{ (request()->is(route('admin.dashboard'))) ? 'active' : '' }}">
+                    <li class="nav-item {{ (url()->current() == route('admin.dashboard')) ? 'active' : '' }}">
 
                         <a href="{{ route('admin.dashboard') }}" class="nav-link">
                             <i class="nav-icon fas fa-clipboard-list"></i>
