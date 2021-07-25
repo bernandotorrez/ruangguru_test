@@ -5,14 +5,15 @@
 
             <ul class="nav has-active-border active-on-right">
 
+                @if (!Auth::check())
                 <li class="nav-item-caption">
                     <span class="fadeable pl-3">MAIN</span>
                     <span class="fadeinable mt-n2 text-125">&hellip;</span>
                 </li>
 
-                <li class="nav-item active">
+                <li class="nav-item {{ (request()->is(route('home.index'))) ? 'active' : '' }}">
 
-                    <a href="html/dashboard.html" class="nav-link">
+                    <a href="{{ route('home.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <span class="nav-text fadeable">
                             <span>Submit Submission</span>
@@ -23,9 +24,9 @@
 
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item {{ (request()->is(route('home.check-submission'))) ? 'active' : '' }}">
 
-                    <a href="html/dashboard.html" class="nav-link">
+                    <a href="{{ route('home.check-submission') }}" class="nav-link">
                         <i class="nav-icon fas fa-search"></i>
                         <span class="nav-text fadeable">
                             <span>Check Submission</span>
@@ -35,6 +36,7 @@
                     <b class="sub-arrow"></b>
 
                 </li>
+                @endif
 
                 {{-- <li class="nav-item">
 
@@ -71,9 +73,9 @@
                         <span class="fadeinable mt-n2 text-125">&hellip;</span>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item {{ (request()->is(route('admin.dashboard'))) ? 'active' : '' }}">
 
-                        <a href="html/dashboard.html" class="nav-link">
+                        <a href="{{ route('admin.dashboard') }}" class="nav-link">
                             <i class="nav-icon fas fa-clipboard-list"></i>
                             <span class="nav-text fadeable">
                                 <span>Submission List</span>

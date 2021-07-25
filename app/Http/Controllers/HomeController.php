@@ -6,6 +6,7 @@ use App\Http\Requests\CheckIfEligibleRequest;
 use App\Http\Requests\SubmitSubmissionRequest;
 use App\Repositories\Api\RuangguruApiRepository;
 use App\Repositories\Eloquent\EligiblePrizeMappingsRepository;
+use App\Repositories\Eloquent\SubmissionsRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -61,8 +62,38 @@ class HomeController extends Controller
         return $response;
     }
 
-    public function submitSubmission(Request $request)
-    {
-        dd($request->post());
+    public function submitSubmission(
+        SubmitSubmissionRequest $request,
+        SubmissionsRepository $submissionsRepository
+    ) {
+        $validated = $request->validated();
+
+        $checkDuplicate = $submissionsRepository->findDuplicate(['user_id' => $validated['user_id']]);
+
+        if($checkDuplicate >= 1) {
+            return response()->json([
+                'status' => 'fail',
+                'message' => 'Submission already Created',
+                'data' => $checkDuplicate
+            ], 200);
+        } else {
+            $insert = $submissionsRepository->create($validated);
+
+            if($insert) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Submission Succesfully',
+                    'data' => $insert
+                ], 200);
+            } else {
+                return response()->json([
+                    'status' => 'fail',
+                    'message' => 'Submission Failed',
+                    'data' => null
+                ], 200);
+            }
+        }
+
+
     }
 }

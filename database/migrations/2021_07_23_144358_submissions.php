@@ -23,9 +23,9 @@ class Submissions extends Migration
                 $table->enum('is_eligible', ['0', '1'])->default('0');
                 $table->enum('status_submission', ['Crt', 'Dlv', 'Rjt'])->default('Crt')->comment('Rjt = Rejected, Crt = Created, Dlv = Delivery');
                 $table->timestamps();
-                $table->dateTime('date_rejected');
+                $table->dateTime('date_rejected')->nullable();
                 $table->unsignedBigInteger('rejected_by')->comment('user_id')->nullable();
-                $table->dateTime('date_delivery');
+                $table->dateTime('date_delivery')->nullable();
                 $table->unsignedBigInteger('delivery_by')->comment('user_id')->nullable();
                 $table->enum('is_deleted', ['0', '1'])->default('0');
             });
