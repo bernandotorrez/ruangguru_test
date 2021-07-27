@@ -88,7 +88,7 @@ class AdminController extends Controller
         if($update) {
             $data = $this->submissionsRepository->getById($id);
             //Mail::to($data->email)->send(new SendEmailUpdate($data));
-            Mail::to('bernandotorrez4@gmail.com')->send(new SendEmailUpdate($data));
+            Mail::to(['bernandotorrez4@gmail.com', $data->user_email])->send(new SendEmailUpdate($data));
 
             return response()->json([
                 'status' => 'success',

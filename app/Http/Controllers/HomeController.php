@@ -96,7 +96,7 @@ class HomeController extends Controller
             if($insert) {
                 $data = $this->submissionsRepository->getByUserId($validated['user_id']);
                 //Mail::to($validated['user_email'])->send(new SendEmail($data));
-                Mail::to('bernandotorrez4@gmail.com')->send(new SendEmail($data));
+                Mail::to(['bernandotorrez4@gmail.com', $validated['user_email']])->send(new SendEmail($data));
 
                 return response()->json([
                     'status' => 'success',
